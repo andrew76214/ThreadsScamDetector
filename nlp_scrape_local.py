@@ -142,7 +142,6 @@ if __name__ == "__main__":
     a = f"https://www.threads.net/@ni_.888"
     data = asyncio.run(scrape_thread(a))
 
-    # output_path = f"/content/drive/MyDrive/ColabNotebooks/NLP/output_json"
     output_path = "./output_json"
     os.makedirs(output_path, exist_ok=True)
     output_file = os.path.join(output_path, f"data_{datetime.datetime.now(taipei_tz).strftime('%m%d_%H%M')}.json")
