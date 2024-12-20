@@ -1,5 +1,6 @@
 from typing_extensions import TypedDict
 from typing import List
+from langchain.schema import Document
 
 class GraphState(TypedDict):
     """
@@ -15,8 +16,6 @@ class GraphState(TypedDict):
     generation: str
     web_search: str
     documents: List[str]
-
-from langchain.schema import Document
 
 class Nodes:
     def __init__(self, retriever, rag_chain, retrieval_grader, web_search_tool, question_router, hallucination_grader, answer_grader):
