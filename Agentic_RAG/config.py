@@ -1,5 +1,8 @@
 from langchain_community.chat_models import ChatOllama
 from langchain.prompts import PromptTemplate
+from langchain_core.runnables import RunnableConfig
+
+RECURSION_LIMIT = RunnableConfig(recursion_limit=50)
 
 URLS = [
     "https://lilianweng.github.io/posts/2023-06-23-agent/",
@@ -37,7 +40,6 @@ generate_prompt = PromptTemplate(
     input_variables=["question", "document"],
 )
 
-# Prompt
 HallucinationGrader_prompt = PromptTemplate(
     template="""You are a grader assessing whether 
     an answer is grounded in / supported by a set of facts. Give a binary score 'yes' or 'no' score to indicate 
