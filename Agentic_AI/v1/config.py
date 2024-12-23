@@ -7,4 +7,4 @@ EMOTIONAL_SOURCE_PATH = "../../Datasets/data_3.json"
 INVESTMENT_SOURCE_PATH = "../../Datasets/data_4.json"
 
 RECURSION_LIMIT = RunnableConfig(recursion_limit=50)
-LOCAL_LLM = ChatOllama(model="llama3.2:3b", format="json", temperature=0)
+LOCAL_LLM = ChatOllama(model="llama3.2:3b", format="json", temperature=0.7)
