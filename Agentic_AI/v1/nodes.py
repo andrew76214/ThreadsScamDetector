@@ -25,6 +25,7 @@ class Nodes:
         retriever,        # Could be used to retrieve external knowledge or vectorstore
         rag_chain,        # If you still want an LLM chain for RAG style generation
         retrieval_grader, # Could be used to assess knowledge retrieval quality
+        post_grader,
         judge,            # LLM or rule-based module that decides "is scam?" + reason
         keyword_memory,   # Module that stores/updates known scam keywords
         answer_grader,    # Additional grader if needed (or remove if not used)
@@ -33,12 +34,13 @@ class Nodes:
         self.retriever = retriever
         self.rag_chain = rag_chain
         self.retrieval_grader = retrieval_grader
+        self.post_grader = post_grader
         self.judge = judge
         self.keyword_memory = keyword_memory
         self.answer_grader = answer_grader
         self.evaluator = evaluator
         
-    def post_grader(self, state: GraphState) -> GraphState:
+    def grade_post(self, state: GraphState) -> GraphState:
         """
         Coordinator decides if we need external knowledge or existing keyword memory
         before passing the post to the Judge for a scam decision.
@@ -49,19 +51,22 @@ class Nodes:
         Returns:
             GraphState: Updated state with coordinator instructions
         """
+        
         print("---POST GRADER STEP---")
-
-        
-        
         # Example: decide if we want to retrieve external knowledge
         # or just rely on the existing keyword memory based on the post length, etc.
-        if len(state["post"]) > 100:
-            # Suppose we decide to retrieve external knowledge
+        
+        post_text = state["post"]["text"]
+        post_type = state["post"]["type"]
+        
+        post_grader_response = self.post_grader.invoke({"post_text": post_text, "post_type": post_type})
+        
+        if post_grader_response['button'].lower() == "yes":
+            print("---Need External Knowledge---")
             coordinator_decision = "Need External Knowledge"
-            # Could do something like: external_docs = self.retriever.invoke(...)
-
         else:
-            coordinator_decision = "Use Keyword Memory"
+            print("---LLM call---")
+            coordinator_decision = "LLM call"
 
         state["coordinator"] = coordinator_decision
         return state
@@ -128,7 +133,7 @@ class Nodes:
 
         return state
     
-    def answer_grader(self, state: GraphState) -> GraphState:
+    def grade_answer(self, state: GraphState) -> GraphState:
         """
         Coordinator decides the response from judge is good or bad.
         If answer is bad, then return back to regenerate.
