@@ -7,19 +7,19 @@ categories = ['work', 'gambling', 'dating', 'investment']
 methods = [
     'Llama3-TAIDE-LX-8B-Chat-Alpha1 + few-shot learning',
     'Breeze-7B-Instruct-v1_0 + few-shot learning',
+    'Qwen2.5-1.5B-Instruct + few-shot learning',
     'Llama3-TAIDE-LX-8B-Chat-Alpha1 + finetune',
     'Breeze-7B-Instruct-v1_0 + finetune',
-    'Llama3-TAIDE-LX-8B-Chat-Alpha1 + agentic AI',
-    'Breeze-7B-Instruct-v1_0 + agentic AI'
+    'Qwen2.5-1.5B-Instruct + finetune'
 ]
 
 data = [
     [0.629, 0.904, 0.759, 0.502],  # Few-shot learning for Llama3-TAIDE
-    [0.671, 0.890, 0.744, 0.521],  # Few-shot learning for Breeze
+    [0.689, 0.764, 0.720, 0.530],  # Few-shot learning for Breeze
+    [0.546, 0.729, 0.612, 0.360],  # Few-shot learning for qwen
     [0.732, 0.845, 0.772, 0.462],  # Finetune for Llama3-TAIDE
-    [0.714, 0.812, 0.751, 0.488],  # Finetune for Breeze
-    [0.790, 0.923, 0.820, 0.545],  # Agentic AI for Llama3-TAIDE
-    [0.748, 0.902, 0.801, 0.532]   # Agentic AI for Breeze
+    [0.717, 0.810, 0.694, 0.420],  # Finetune for Breeze
+    [0.747, 0.751, 0.649, 0.366]   # Finetune for qwen
 ]
 
 # Plot configuration for the new data
@@ -41,7 +41,7 @@ ax.legend(title='Methods', fontsize=10, title_fontsize=12)
 ax.grid(axis='y', linestyle='--', alpha=0.7)
 
 # Setting Y-axis limit
-ax.set_ylim(0.4, 1.0)
+ax.set_ylim(0.35, 1.0)
 
 # Show the plot
 plt.tight_layout()
