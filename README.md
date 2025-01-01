@@ -13,6 +13,3 @@ Made with [contrib.rocks](https://contrib.rocks).
 2. Gamble : 4926
 3. Emotional_Datiing : 5104
 4. investment : 4981
-
----
-寒假再把程式和README寫好
