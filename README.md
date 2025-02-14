@@ -11,3 +11,10 @@ Taiwan Scam Detection, NLP
 ## poster
 ![image](https://github.com/andrew76214/TaiwanScamDetect/blob/main/poster/data.jpg)
 ![image](https://github.com/andrew76214/TaiwanScamDetect/blob/main/poster/modeling.jpg)
+
+
+<a href="https://github.com/andrew76214/ThreadsScamDetector/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=andrew76214/ThreadsScamDetector" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
